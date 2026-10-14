@@ -1,0 +1,18 @@
+# Archivos de compilacion
+build/
+*.o
+*.exe
+
+# Datos biometricos
+galeria.yml
+
+# Credenciales y configuracion privada
+.env
+.env.*
+!.env.example
+
+# Configuracion local
+.vscode/
+
+# Registros
+*.log

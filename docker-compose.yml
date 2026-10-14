@@ -1,0 +1,21 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: acceso_db
+    restart: unless-stopped
+    # Zona horaria de Ecuador, para que fecha_hora guarde la hora local
+    command: --default-time-zone=-05:00
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: control_acceso
+      MYSQL_USER: acceso
+      MYSQL_PASSWORD: acceso123
+    ports:
+      - "3306:3306"
+    volumes:
+      - datos_mysql:/var/lib/mysql
+      # Se ejecuta solo la primera vez, cuando el volumen está vacío
+      - ./esquema.sql:/docker-entrypoint-initdb.d/esquema.sql:ro
+
+volumes:
+  datos_mysql:
